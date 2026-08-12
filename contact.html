@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Contact | Rominick</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <header>
+
+        <nav class="navbar">
+
+            <a href="index.html" class="logo">
+                ROMINICK<span>.</span>
+            </a>
+
+            <div class="nav-links" id="navLinks">
+
+                <a href="index.html">Home</a>
+
+                <a href="about.html">About</a>
+
+                <a href="projects.html">Projects</a>
+
+                <a href="contact.html" class="active">
+                    Contact
+                </a>
+
+            </div>
+
+            <button class="menu-btn" id="menuBtn">
+                ☰
+            </button>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =========================
+         CONTACT SECTION
+    ========================== -->
+
+    <main class="page-container">
+
+        <section class="contact">
+
+            <p class="section-number">
+                03.
+            </p>
+
+            <h1>
+                Let's Connect.
+            </h1>
+
+            <p>
+                Have a question, project idea, or just want to say hello?
+                Feel free to send me a message.
+            </p>
+
+
+
+            <!-- =========================
+                 CONTACT FORM
+            ========================== -->
+
+            <form
+                action="https://api.web3forms.com/submit"
+                method="POST">
+
+
+                <!-- WEB3FORMS ACCESS KEY -->
+
+                <input
+                    type="hidden"
+                    name="access_key"
+                    value="c28e4797-e465-4158-8a22-a14389cb7235">
+
+
+                <!-- EMAIL SUBJECT -->
+
+                <input
+                    type="hidden"
+                    name="subject"
+                    value="New Message From Rominick's Portfolio">
+
+
+                <!-- NAME -->
+
+                <div>
+
+                    <label for="name">
+                        Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Your name"
+                        required>
+
+                </div>
+
+
+
+                <!-- EMAIL -->
+
+                <div>
+
+                    <label for="email">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="your@email.com"
+                        required>
+
+                </div>
+
+
+
+                <!-- MESSAGE -->
+
+                <div>
+
+                    <label for="message">
+                        Message
+                    </label>
+
+                    <textarea
+                        id="message"
+                        name="message"
+                        rows="6"
+                        placeholder="Write your message..."
+                        required></textarea>
+
+                </div>
+
+
+
+                <!-- SEND BUTTON -->
+
+                <button type="submit">
+                    Send Message →
+                </button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <a href="index.html" class="logo">
+            ROMINICK<span>.</span>
+        </a>
+
+        <p>
+            Designed & Built by Rominick
+        </p>
+
+        <p>
+            © 2026 All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
