@@ -1,0 +1,211 @@
+/*
+  Rominick Portfolio — mobile responsiveness patch
+  Load AFTER style.css and themes.css.
+  Does not change project text, links, filters, or theme colors.
+*/
+
+/* Prevent accidental horizontal scrolling on every theme. */
+html, body { max-width: 100%; }
+body { overflow-x: clip; }
+img, video, iframe { max-width: 100%; }
+
+/* The theme panel is moved to <body> by mobile-fixes.js, so it cannot
+   be clipped or offset by the navbar/backdrop blur. */
+.theme-picker-panel {
+  position: fixed !important;
+  top: 86px !important;
+  right: clamp(12px, 5vw, 90px) !important;
+  left: auto !important;
+  z-index: 9999 !important;
+  box-sizing: border-box;
+  width: min(370px, calc(100vw - 24px)) !important;
+  max-height: calc(100vh - 106px);
+  max-height: calc(100dvh - 106px);
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+.theme-picker-panel[hidden] { display: none !important; }
+.theme-picker-panel *, .theme-picker-panel *::before, .theme-picker-panel *::after {
+  box-sizing: border-box;
+}
+.theme-picker-heading,
+.theme-picker-option,
+.theme-picker-options,
+.theme-option-label { min-width: 0; }
+.theme-option-label strong,
+.theme-option-label small,
+.theme-picker-heading small { overflow-wrap: anywhere; }
+.theme-swatch { flex-shrink: 0; }
+
+/* At every viewport size, keep project images inside the card bounds. */
+.project-grid > .project-card,
+.featured .project-grid > .project-card {
+  min-width: 0;
+  max-width: 100%;
+}
+.project-grid .project-info { min-width: 0; }
+.project-grid .project-info h2,
+.project-grid .project-info h3 { overflow-wrap: anywhere; }
+.project-grid .project-info .tech,
+.project-grid .project-info .project-links { flex-wrap: wrap; }
+
+/* A screenshot should show its ENTIRE interface on phones, not crop it. */
+@media (max-width: 800px) {
+  .navbar {
+    width: 100%;
+    max-width: 100%;
+    padding-inline: 4% !important;
+    gap: 8px !important;
+  }
+  .navbar .logo { min-width: 0; font-size: clamp(17px, 4.4vw, 23px); letter-spacing: .045em; }
+  .navbar .theme-picker { margin-left: auto; flex-shrink: 0; }
+  .navbar .menu-btn { flex-shrink: 0; min-width: 34px; padding: 3px; }
+  .navbar .nav-links {
+    width: 100%;
+    left: 0;
+    right: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+    background: var(--nav-bg, #080c14);
+    z-index: 500;
+  }
+  .theme-picker-trigger { min-width: 38px; min-height: 39px; }
+
+  /* Theme picker: visible on ANY phone width and scrollable on small heights. */
+  .theme-picker-panel {
+    top: 90px !important;
+    left: max(12px, env(safe-area-inset-left)) !important;
+    right: max(12px, env(safe-area-inset-right)) !important;
+    width: auto !important;
+    max-width: none !important;
+    max-height: calc(100vh - 108px);
+    max-height: calc(100dvh - 108px);
+    padding: 13px !important;
+    border-radius: 15px;
+  }
+  .theme-picker-heading { gap: 8px; }
+  .theme-picker-heading strong { font-size: 17px; }
+  .theme-picker-option { width: 100%; padding: 9px; gap: 10px; }
+  .theme-option-label strong { font-size: 12px; }
+  .theme-option-label small { font-size: 11px; }
+  .theme-swatch { width: 50px; height: 39px; }
+  .theme-picker-note { line-height: 1.5; }
+
+  /* All 5 themes: one-column sections and safe paddings. */
+  .hero,
+  html[data-portfolio-theme="bento"] .hero {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: stretch;
+    width: 100%;
+    max-width: 100%;
+    min-height: auto;
+    padding: 38px 6% 64px;
+    gap: 28px;
+  }
+  .hero-content,
+  html[data-portfolio-theme="bento"] .hero-content { width: 100%; max-width: 100%; min-width: 0; }
+  .hero h1,
+  html[data-portfolio-theme="minimal"] .hero h1,
+  html[data-portfolio-theme="terminal"] .hero h1,
+  html[data-portfolio-theme="creative"] .hero h1,
+  html[data-portfolio-theme="bento"] .hero h1 {
+    font-size: clamp(2.3rem, 10vw, 4.75rem);
+    line-height: 1.02;
+    overflow-wrap: anywhere;
+  }
+  .profile-container,
+  html[data-portfolio-theme="bento"] .profile-container {
+    width: min(77vw, 330px);
+    height: clamp(290px, 84vw, 390px);
+    max-width: 100%;
+    margin-inline: auto;
+    min-height: 0;
+  }
+  /* Keep the ORIGINAL rectangular photo, no pop-out effect. */
+  .profile-container .profile-image { overflow: hidden !important; }
+  .profile-container .profile-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    transform: none !important;
+  }
+  .hero-buttons { flex-wrap: wrap; }
+  .hero-buttons > a { text-align: center; }
+  .page-container, .featured, .home-about { padding-inline: 6% !important; max-width: 100%; }
+  .page-title h1, .contact h1 { font-size: clamp(2.3rem, 10.5vw, 4rem); }
+  .about-content { display: grid; grid-template-columns: minmax(0, 1fr) !important; gap: 28px; }
+  .about-content > *, .skills-grid > * { min-width: 0; }
+  .skills-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr)); }
+  .contact, .contact form { width: 100%; max-width: 100%; }
+  .contact input, .contact textarea { max-width: 100%; box-sizing: border-box; }
+  .filters { flex-wrap: wrap; width: 100%; }
+
+  .featured .project-grid,
+  .page-container .project-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 20px !important;
+    width: 100%;
+  }
+  .project-grid > .project-card,
+  html[data-portfolio-theme="bento"] .featured .project-card:first-child {
+    grid-column: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    overflow: hidden;
+  }
+  .project-grid > .project-card[style*="display: none"] { display: none !important; }
+  .project-grid > .project-card .project-image,
+  html[data-portfolio-theme="bento"] .featured .project-card:first-child .project-image {
+    display: block;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    flex: 0 0 auto !important;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--panel-2, #142033);
+  }
+  /* A wide ScanSafe capture is approximately 1303×594 (2.19:1). */
+  .project-grid > .project-card .project-image:has(> img[src*="scansafe" i]) {
+    aspect-ratio: 1303 / 594;
+  }
+  .project-grid > .project-card .project-image img,
+  html[data-portfolio-theme="bento"] .featured .project-card:first-child .project-image img {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100%;
+    object-fit: contain !important;
+    object-position: center;
+    transform: none !important;
+  }
+  .project-grid > .project-card .project-info { padding: 20px !important; }
+  .project-grid > .project-card .project-info h2,
+  .project-grid > .project-card .project-info h3 { font-size: clamp(1.1rem, 4.6vw, 1.45rem); line-height: 1.35; }
+  .project-grid > .project-card .project-info p { line-height: 1.65; }
+  .project-info .project-links { display: flex; gap: 12px; flex-wrap: wrap; }
+  .project-info .project-links a { overflow-wrap: anywhere; }
+  footer { padding: 32px 6% !important; flex-wrap: wrap; gap: 12px; text-align: center; }
+}
+
+@media (max-width: 380px) {
+  .navbar { padding-inline: 3% !important; gap: 6px !important; }
+  .navbar .logo { font-size: 17px; }
+  .theme-picker-trigger { padding-inline: 9px !important; }
+  .hero,
+  html[data-portfolio-theme="bento"] .hero { padding-inline: 5%; }
+  .hero h1,
+  html[data-portfolio-theme="minimal"] .hero h1,
+  html[data-portfolio-theme="terminal"] .hero h1,
+  html[data-portfolio-theme="creative"] .hero h1,
+  html[data-portfolio-theme="bento"] .hero h1 { font-size: clamp(2rem, 10vw, 2.9rem); }
+  .page-container, .featured, .home-about { padding-inline: 5% !important; }
+  .project-grid > .project-card .project-info { padding: 17px !important; }
+}
