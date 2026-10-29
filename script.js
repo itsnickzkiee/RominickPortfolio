@@ -1,32 +1,30 @@
 // =========================
-// HAMBURGER MENU
+// HAMBURGER MENU (encoding-safe)
 // =========================
 
 const menuBtn = document.getElementById("menuBtn");
 const navLinks = document.getElementById("navLinks");
 
-
 if (menuBtn && navLinks) {
+    menuBtn.type = "button";
+    menuBtn.setAttribute("aria-label", "Toggle navigation menu");
+    menuBtn.setAttribute("aria-controls", "navLinks");
+
+    // Use Unicode escapes so Windows encoding cannot corrupt the icons.
+    function updateMenuIcon() {
+        const isOpen = navLinks.classList.contains("show");
+        menuBtn.textContent = isOpen ? "\u2715" : "\u2630";
+        menuBtn.setAttribute("aria-expanded", String(isOpen));
+    }
+
+    // Fix the broken icon as soon as the page loads, before any click.
+    updateMenuIcon();
 
     menuBtn.addEventListener("click", function () {
-
         navLinks.classList.toggle("show");
-
-
-        if (navLinks.classList.contains("show")) {
-
-            menuBtn.innerHTML = "✕";
-
-        } else {
-
-            menuBtn.innerHTML = "☰";
-
-        }
-
+        updateMenuIcon();
     });
-
 }
-
 
 
 // =========================
